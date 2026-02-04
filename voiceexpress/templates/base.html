@@ -1,0 +1,99 @@
+<!-- Page template: base.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VoiceExpress — Truth Takes Time</title>
+  <link rel="icon" href="/static/images/voiceexpress-icon.svg" />
+  <link rel="stylesheet" href="/static/css/voiceexpress.css" />
+  <script defer src="/static/js/voiceexpress.js"></script>
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar left">
+      <div class="logo-block">
+        <div class="logo">VE</div>
+        <h1>VoiceExpress</h1>
+        <p class="tagline">Truth takes time.</p>
+      </div>
+      <nav class="nav">
+        <a href="/">Central Station</a>
+        <a href="/archive">Archive</a>
+        <a href="/map">Map</a>
+        <a href="/timeline">Timeline</a>
+        <a href="/library">Library</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/admin/">Editor’s Desk</a>
+      </nav>
+      <div class="sidebar-section">
+        <h3>Routes</h3>
+        {% for category in categories %}
+          <a href="/category/{{ category }}" class="chip">{{ category }}</a>
+        {% endfor %}
+      </div>
+      <div class="sidebar-section">
+        <h3>Tags</h3>
+        {% for tag in tags %}
+          <a href="/tag/{{ tag }}" class="chip muted">{{ tag }}</a>
+        {% endfor %}
+      </div>
+      <div class="sidebar-section">
+        <h3>Issues</h3>
+        {% for issue in issues %}
+          <a href="/issue/{{ issue.name }}" class="chip issue">{{ issue.name }}</a>
+        {% endfor %}
+      </div>
+    </aside>
+
+    <main class="main">
+      {% block content %}{% endblock %}
+    </main>
+
+    <aside class="sidebar right">
+      <div class="sidebar-section">
+        <h3>Advanced Search</h3>
+        <form action="/search" method="get" class="search-form">
+          <input type="text" name="q" placeholder="Search the archive" />
+          <select name="category">
+            <option value="">All routes</option>
+            {% for category in categories %}
+              <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+          </select>
+          <select name="type">
+            <option value="">All types</option>
+            <option value="article">Article</option>
+            <option value="report">Report</option>
+            <option value="letter">Letter</option>
+            <option value="photo">Photojournalism</option>
+            <option value="zine">Zine</option>
+          </select>
+          <input type="text" name="location" placeholder="Location" />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      <div class="sidebar-section">
+        <h3>Authors</h3>
+        {% for author in authors %}
+          <a href="/author/{{ author }}">{{ author }}</a>
+        {% endfor %}
+      </div>
+      <div class="sidebar-section">
+        <h3>Reader</h3>
+        {% if current_user %}
+          <p>Signed in as {{ current_user }}</p>
+          <a href="/saved">Saved Posts</a>
+          <a href="/auth/logout">Log out</a>
+        {% else %}
+          <a href="/auth/login">Log in</a>
+          <a href="/auth/signup">Sign up</a>
+        {% endif %}
+      </div>
+      <div class="sidebar-section">
+        <button class="theme-toggle" data-toggle-theme>Toggle Theme</button>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>

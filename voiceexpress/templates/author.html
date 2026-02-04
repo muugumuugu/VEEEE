@@ -1,0 +1,17 @@
+<!-- Page template: author.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="author-desk">
+  <h1>{{ author }} Desk</h1>
+  <p class="desk-note">A curated ledger of field work, letters, and reports.</p>
+  <div class="desk-grid">
+    {% for artifact in artifacts %}
+      <article>
+        <h2>{{ artifact.title }}</h2>
+        <p>{{ artifact.synopsis }}</p>
+        <a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">Open</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

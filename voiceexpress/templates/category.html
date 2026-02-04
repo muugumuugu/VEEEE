@@ -1,0 +1,17 @@
+<!-- Page template: category.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="category">
+  <h1>{{ category }} Route</h1>
+  <div class="newspaper-grid">
+    {% for artifact in artifacts %}
+      <article class="news-card">
+        <h2>{{ artifact.title }}</h2>
+        <p>{{ artifact.synopsis }}</p>
+        <div class="byline">{{ artifact.byline }}</div>
+        <a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">Read</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

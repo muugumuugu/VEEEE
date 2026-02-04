@@ -1,0 +1,22 @@
+<!-- Page template: search.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="search-results">
+  <h1>Advanced Search</h1>
+  <p>Query: <strong>{{ query }}</strong></p>
+  {% if results %}
+    <div class="result-grid">
+      {% for artifact in results %}
+        <article>
+          <h2>{{ artifact.title }}</h2>
+          <p>{{ artifact.synopsis }}</p>
+          <div class="meta">{{ artifact.category }} · {{ artifact.location }}</div>
+          <a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">Open</a>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No results yet. Refine your search using the sidebar filters.</p>
+  {% endif %}
+</section>
+{% endblock %}

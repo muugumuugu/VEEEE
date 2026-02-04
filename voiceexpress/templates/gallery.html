@@ -1,0 +1,17 @@
+<!-- Page template: gallery.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="collection gallery">
+  <h1>{{ collection.name }}</h1>
+  <p>{{ collection.description }}</p>
+  <div class="gallery-grid">
+    {% for artifact in artifacts %}
+      <article class="card">
+        <div class="image-placeholder">Visual Story</div>
+        <h2>{{ artifact.title }}</h2>
+        <a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">Open</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

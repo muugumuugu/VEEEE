@@ -1,0 +1,16 @@
+<!-- Page template: archive.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="archive">
+  <h1>Issue Archive</h1>
+  <div class="issue-list">
+    {% for issue in issues %}
+      <div class="issue-card">
+        <h2>{{ issue.name }}</h2>
+        <p>{{ issue.letter }}</p>
+        <a href="/issue/{{ issue.name }}">Open Issue</a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

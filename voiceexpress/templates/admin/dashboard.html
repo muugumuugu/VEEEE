@@ -1,0 +1,20 @@
+<!-- Page template: dashboard.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="admin">
+  <h1>Editor's Desk</h1>
+  <p>Creator modes map to real newsroom practices. Choose a mode to begin.</p>
+  <div class="admin-grid">
+    <a href="/admin/create">News Writer · Artifact Builder</a>
+    <a href="/admin/create">Investigative Reporter · Two-layer reports</a>
+    <a href="/admin/create">Photojournalist · Sequence builder</a>
+    <a href="/admin/create">Letter Writer · Epistolary notes</a>
+    <a href="/admin/create">Zine Maker · Folded spreads</a>
+    <a href="/admin/tags">Tag Creator</a>
+    <a href="/admin/categories">Category Creator</a>
+  </div>
+  {% if not is_editor %}
+    <p class="warning">Login as an editor to create artifacts.</p>
+  {% endif %}
+</section>
+{% endblock %}

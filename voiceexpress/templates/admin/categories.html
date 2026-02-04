@@ -1,0 +1,16 @@
+<!-- Page template: categories.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="admin">
+  <h1>Category Creator</h1>
+  <form method="post" class="admin-form">
+    <label>New category<input type="text" name="category" /></label>
+    <button type="submit">Add category</button>
+  </form>
+  <ul class="chip-list">
+    {% for category in categories %}
+      <li class="chip">{{ category }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

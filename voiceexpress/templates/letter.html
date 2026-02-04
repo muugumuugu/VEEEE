@@ -1,0 +1,27 @@
+<!-- Page template: letter.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="letter">
+  <header>
+    <div class="breadcrumbs">Letters · {{ letter.artifact.issue }}</div>
+    <h1>{{ letter.artifact.title }}</h1>
+    <p class="tagline">{{ letter.artifact.tagline }}</p>
+    <div class="byline">{{ letter.artifact.byline }} · To {{ letter.recipient }}</div>
+  </header>
+  <article class="letter-body">
+    <p>{{ letter.artifact.body }}</p>
+    <details>
+      <summary>Read more</summary>
+      <p>{{ letter.artifact.author_note }}</p>
+    </details>
+  </article>
+  <section class="citations">
+    <h3>Citations</h3>
+    <ul>
+      {% for citation in letter.artifact.citations %}
+        <li class="citation" data-tooltip="{{ citation.source }} — {{ citation.url }}">{{ citation.label }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+</section>
+{% endblock %}

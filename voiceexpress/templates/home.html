@@ -1,0 +1,72 @@
+<!-- Page template: home.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-note">
+    <h2>Editor's Note</h2>
+    <p>Welcome aboard the VoiceExpress. We publish slowly, with evidence and care. This month's rail map bends around the labor of signal crews and the quiet artistry of night lines.</p>
+  </div>
+  <div class="hero-train">
+    <div class="train">
+      <span class="engine">Editor</span>
+      <span class="car">Issue Desk</span>
+      <span class="car">Field Reports</span>
+      <span class="car">Photojournalism</span>
+      <span class="car">Letters</span>
+    </div>
+    <div class="route-map">Express Line: {{ editor_pick.title }}</div>
+  </div>
+</section>
+
+<section class="feature-grid">
+  <article class="feature">
+    <h3>Editor's Pick</h3>
+    <h2>{{ editor_pick.title }}</h2>
+    <p>{{ editor_pick.synopsis }}</p>
+    <a href="/report/{{ editor_pick.id }}" class="button">Read report</a>
+  </article>
+  <article class="feature">
+    <h3>Top Article</h3>
+    <h2>{{ top_article.title }}</h2>
+    <p>{{ top_article.synopsis }}</p>
+    <a href="/article/{{ top_article.id }}" class="button">Read article</a>
+  </article>
+  <article class="feature">
+    <h3>Recently in circulation</h3>
+    <ul>
+      {% for artifact in recent_articles %}
+        <li><a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">{{ artifact.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </article>
+</section>
+
+<section class="carousel" data-carousel>
+  <div class="carousel-header">
+    <h2>Reports, Video, Photojournalism</h2>
+    <div class="carousel-controls">
+      <button data-carousel-prev>&larr;</button>
+      <button data-carousel-next>&rarr;</button>
+    </div>
+  </div>
+  <div class="carousel-track">
+    {% for artifact in artifacts %}
+      <div class="carousel-card">
+        <div class="image-placeholder">{{ artifact.category }}</div>
+        <h3>{{ artifact.title }}</h3>
+        <p>{{ artifact.synopsis }}</p>
+        <a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">Open</a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="newsletter">
+  <h2>Monthly Newsletter</h2>
+  <p>Receive the station bulletin once per month, delivered with the issue.</p>
+  <form action="/newsletter" method="post">
+    <input type="email" name="email" placeholder="your@email.com" required />
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+{% endblock %}

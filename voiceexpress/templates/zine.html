@@ -1,0 +1,29 @@
+<!-- Page template: zine.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="zine" data-zine>
+  <header>
+    <div class="breadcrumbs">Zines · {{ zine.artifact.issue }}</div>
+    <h1>{{ zine.artifact.title }}</h1>
+    <p class="tagline">{{ zine.artifact.tagline }}</p>
+    <div class="byline">{{ zine.artifact.byline }}</div>
+  </header>
+  <div class="matchbox">
+    <button data-zine-toggle>Open Matchbox</button>
+    <div class="zine-spreads" data-zine-spreads>
+      {% for spread in zine.spreads %}
+        <div class="spread">{{ spread }}</div>
+      {% endfor %}
+      <div class="print-notes">{{ zine.print_notes }}</div>
+    </div>
+  </div>
+  <section class="citations">
+    <h3>Citations</h3>
+    <ul>
+      {% for citation in zine.artifact.citations %}
+        <li class="citation" data-tooltip="{{ citation.source }} — {{ citation.url }}">{{ citation.label }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+</section>
+{% endblock %}
