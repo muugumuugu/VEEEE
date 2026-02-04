@@ -1,0 +1,17 @@
+<!-- Page template: library.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="collection library">
+  <h1>{{ collection.name }}</h1>
+  <p>{{ collection.description }}</p>
+  <div class="catalog">
+    {% for artifact in artifacts %}
+      <article class="card">
+        <h2>{{ artifact.title }}</h2>
+        <p>{{ artifact.synopsis }}</p>
+        <a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">Open</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!-- Page template: saved.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="saved">
+  <h1>{{ user.nickname }}'s Saved Ledger</h1>
+  {% if artifacts %}
+    <ul>
+      {% for artifact in artifacts %}
+        <li><a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">{{ artifact.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No saved artifacts yet. Add items from article pages.</p>
+  {% endif %}
+</section>
+{% endblock %}

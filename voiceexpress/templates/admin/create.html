@@ -1,0 +1,46 @@
+<!-- Page template: create.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="admin">
+  <h1>Create Artifact</h1>
+  <p>Every artifact requires provenance: author, editor, location, citations, and tags.</p>
+  {% if message %}<p class="success">{{ message }}</p>{% endif %}
+  <form method="post" class="admin-form">
+    <label>Title<input type="text" name="title" required /></label>
+    <label>Tagline<input type="text" name="tagline" /></label>
+    <label>Synopsis<textarea name="synopsis"></textarea></label>
+    <label>Byline<input type="text" name="byline" /></label>
+    <label>Author Note<textarea name="author_note"></textarea></label>
+    <label>Editor Note<textarea name="editor_note"></textarea></label>
+    <label>Body<textarea name="body" rows="6"></textarea></label>
+    <label>Category
+      <select name="category">
+        {% for category in categories %}
+          <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Tags (comma separated)<input type="text" name="tags" /></label>
+    <label>Location<input type="text" name="location" /></label>
+    <label>Issue<input type="text" name="issue" value="June 2024" /></label>
+    <label>Artifact Type
+      <select name="artifact_type">
+        <option value="article">Article</option>
+        <option value="report">Report</option>
+        <option value="letter">Letter</option>
+        <option value="photo">Photo</option>
+        <option value="zine">Zine</option>
+      </select>
+    </label>
+    <label>Geotag (lat,lng)<input type="text" name="geotag" /></label>
+    <label>Abstract Tag<input type="text" name="abstract_tag" /></label>
+    <fieldset>
+      <legend>Primary Citation</legend>
+      <label>Label<input type="text" name="citation_label" /></label>
+      <label>Source<input type="text" name="citation_source" /></label>
+      <label>URL<input type="url" name="citation_url" /></label>
+    </fieldset>
+    <button type="submit">Submit to editorial desk</button>
+  </form>
+</section>
+{% endblock %}

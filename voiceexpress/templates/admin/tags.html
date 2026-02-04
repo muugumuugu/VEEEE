@@ -1,0 +1,16 @@
+<!-- Page template: tags.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="admin">
+  <h1>Tag Creator</h1>
+  <form method="post" class="admin-form">
+    <label>New tag<input type="text" name="tag" /></label>
+    <button type="submit">Add tag</button>
+  </form>
+  <ul class="chip-list">
+    {% for tag in tags %}
+      <li class="chip muted">{{ tag }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

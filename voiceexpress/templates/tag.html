@@ -1,0 +1,15 @@
+<!-- Page template: tag.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="tag-digest">
+  <h1>Digest: {{ tag }}</h1>
+  {% for artifact in artifacts %}
+    <article class="digest-card">
+      <h2>{{ artifact.title }}</h2>
+      <p>{{ artifact.synopsis }}</p>
+      <div class="meta">{{ artifact.category }} · {{ artifact.issue }}</div>
+      <a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">Open</a>
+    </article>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!-- Page template: timeline.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="timeline">
+  <div class="barcode">VOICEEXPRESS · ARCHIVE</div>
+  <h1>Temporal Archive</h1>
+  <div class="timeline-rail">
+    {% for artifact in artifacts %}
+      <div class="timeline-entry">
+        <div class="date">{{ artifact.published.strftime('%B %Y') }}</div>
+        <div class="dot"></div>
+        <div class="details">
+          <h2>{{ artifact.title }}</h2>
+          <p>{{ artifact.synopsis }}</p>
+          <a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">Open</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

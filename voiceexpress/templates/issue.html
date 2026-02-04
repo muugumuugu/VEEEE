@@ -1,0 +1,28 @@
+<!-- Page template: issue.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="issue-cover">
+  <div class="issue-badge">{{ issue.name }}</div>
+  <h2>{{ issue.name }} Circulation</h2>
+  <p>{{ issue.letter }}</p>
+  <div class="toc">
+    <h3>Table of Routes</h3>
+    <ul>
+      {% for route in issue.routes %}
+        <li><a href="/category/{{ route }}">{{ route }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="issue-grid">
+  {% for artifact in artifacts %}
+    <article class="issue-card">
+      <h3>{{ artifact.title }}</h3>
+      <p>{{ artifact.synopsis }}</p>
+      <div class="meta">{{ artifact.byline }} · {{ artifact.location }}</div>
+      <a href="/{{ artifact.artifact_type }}/{{ artifact.id }}">Open artifact</a>
+    </article>
+  {% endfor %}
+</section>
+{% endblock %}

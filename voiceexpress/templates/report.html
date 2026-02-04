@@ -1,0 +1,41 @@
+<!-- Page template: report.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<article class="report" data-report>
+  <header>
+    <div class="breadcrumbs">Investigative Report · {{ report.artifact.issue }}</div>
+    <h1>{{ report.artifact.title }}</h1>
+    <p class="tagline">{{ report.artifact.tagline }}</p>
+    <div class="byline">{{ report.artifact.byline }} · {{ report.artifact.location }}</div>
+  </header>
+  <section class="report-controls">
+    <button data-layer="reader" class="active">Reader Mode</button>
+    <button data-layer="research">Research Mode</button>
+  </section>
+  <section class="report-body">
+    <p>{{ report.artifact.body }}</p>
+  </section>
+  <aside class="annotations" data-annotations>
+    <h3>Overlay Annotations</h3>
+    <ul>
+      {% for note in report.annotations %}
+        <li>{{ note }}</li>
+      {% endfor %}
+    </ul>
+    <h4>Sources</h4>
+    <ul>
+      {% for source in report.sources %}
+        <li>{{ source }}</li>
+      {% endfor %}
+    </ul>
+  </aside>
+  <section class="citations">
+    <h3>Citations</h3>
+    <ul>
+      {% for citation in report.artifact.citations %}
+        <li class="citation" data-tooltip="{{ citation.source }} — {{ citation.url }}">{{ citation.label }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+</article>
+{% endblock %}

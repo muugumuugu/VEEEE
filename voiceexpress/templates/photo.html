@@ -1,0 +1,25 @@
+<!-- Page template: photo.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<section class="photo-viewer" data-photo-viewer>
+  <header>
+    <div class="breadcrumbs">Photojournalism · {{ essay.artifact.issue }}</div>
+    <h1>{{ essay.artifact.title }}</h1>
+    <p class="tagline">{{ essay.artifact.tagline }}</p>
+    <div class="byline">{{ essay.artifact.byline }} · {{ essay.artifact.location }}</div>
+  </header>
+  <div class="photo-modes">
+    <button data-mode="film" class="active">Film Roll</button>
+    <button data-mode="contact">Contact Sheet</button>
+    <button data-mode="darkroom">Darkroom Focus</button>
+  </div>
+  <div class="film-roll">
+    {% for frame in essay.frames %}
+      <figure>
+        <div class="image-placeholder">Frame {{ loop.index }}</div>
+        <figcaption>{{ essay.captions[loop.index0] }}</figcaption>
+      </figure>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

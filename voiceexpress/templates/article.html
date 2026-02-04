@@ -1,0 +1,48 @@
+<!-- Page template: article.html. VoiceExpress page contract with layout, metadata, and interaction hooks. -->
+{% extends "base.html" %}
+{% block content %}
+<article class="article">
+  <header>
+    <div class="breadcrumbs">{{ artifact.category }} · {{ artifact.issue }}</div>
+    <h1>{{ artifact.title }}</h1>
+    <p class="tagline">{{ artifact.tagline }}</p>
+    <div class="byline">{{ artifact.byline }} · {{ artifact.location }} · {{ artifact.published.strftime('%B %d, %Y') }}</div>
+  </header>
+  <section class="synopsis">
+    <h2>Synopsis</h2>
+    <p>{{ artifact.synopsis }}</p>
+  </section>
+  <section class="body">
+    <p>{{ artifact.body }}</p>
+  </section>
+  <section class="citations">
+    <h3>Citations</h3>
+    <ul>
+      {% for citation in artifact.citations %}
+        <li class="citation" data-tooltip="{{ citation.source }} — {{ citation.url }}">{{ citation.label }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  <section class="notes">
+    <div>
+      <h4>Author's Note</h4>
+      <p>{{ artifact.author_note }}</p>
+    </div>
+    <div>
+      <h4>Editor's Note</h4>
+      <p>{{ artifact.editor_note }}</p>
+    </div>
+  </section>
+  <section class="meta-grid">
+    <div><strong>Tags</strong> {{ artifact.tags | join(', ') }}</div>
+    <div><strong>Geotag</strong> {{ artifact.geotag }}</div>
+    <div><strong>Abstract Tag</strong> {{ artifact.abstract_tag }}</div>
+  </section>
+  <form action="/save/{{ artifact.id }}" method="post" class="inline-form">
+    <button type="submit">Save to ledger</button>
+  </form>
+  <form action="/favorite/{{ artifact.id }}" method="post" class="inline-form">
+    <button type="submit">Favorite</button>
+  </form>
+</article>
+{% endblock %}
